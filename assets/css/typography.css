@@ -1,0 +1,66 @@
+/* Shared type scale for the resume and portfolio pages. */
+:root {
+  --type-body: 1rem;
+  --type-small: 0.875rem;
+  --type-card-title: 1.25rem;
+  --type-subheading: 1.35rem;
+  --type-section-title: 2rem;
+}
+
+body.index-page,
+body.portfolio-details-page {
+  font-size: var(--type-body);
+  line-height: 1.6;
+}
+
+.section-title h2 {
+  font-size: var(--type-section-title);
+  line-height: 1.2;
+}
+
+.section-title p,
+.portfolio .portfolio-project-copy p,
+.skills .skill-box p,
+.stats .stats-item p,
+.contact .info-item .content p,
+.contact .contact-invite span,
+.portfolio-details .portfolio-description p,
+.portfolio-details .portfolio-info li {
+  font-size: var(--type-body);
+  line-height: 1.6;
+}
+
+.portfolio .portfolio-project-copy h3 {
+  font-size: var(--type-card-title);
+  line-height: 1.3;
+}
+
+.portfolio-details .media-heading,
+.portfolio-details .project-video-block h2,
+.portfolio-details .project-info-heading,
+.portfolio-details .portfolio-info h3,
+.portfolio-details .portfolio-description > h2 {
+  font-size: var(--type-subheading);
+  line-height: 1.3;
+  font-weight: 700;
+}
+
+.portfolio-details .project-actions a,
+.section-title .document-actions .btn,
+.contact .contact-form .btn {
+  font-size: var(--type-body);
+  line-height: 1.4;
+}
+
+.portfolio-details .video-direct-link,
+.portfolio .portfolio-info .category,
+.resume .resume-tags span {
+  font-size: var(--type-small);
+  line-height: 1.5;
+}
+
+@media (max-width: 575px) {
+  .section-title h2 {
+    font-size: 1.75rem;
+  }
+}

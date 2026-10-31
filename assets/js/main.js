@@ -138,33 +138,31 @@
    * Init isotope layout and filters
    */
   document.querySelectorAll('.isotope-layout').forEach(function(isotopeItem) {
-    let layout = isotopeItem.getAttribute('data-layout') ?? 'masonry';
-    let filter = isotopeItem.getAttribute('data-default-filter') ?? '*';
-    let sort = isotopeItem.getAttribute('data-sort') ?? 'original-order';
+    const container = isotopeItem.querySelector('.isotope-container');
+    const layout = isotopeItem.getAttribute('data-layout') ?? 'masonry';
+    const filter = isotopeItem.getAttribute('data-default-filter') ?? '*';
+    const sort = isotopeItem.getAttribute('data-sort') ?? 'original-order';
 
-    let initIsotope;
-    imagesLoaded(isotopeItem.querySelector('.isotope-container'), function() {
-      initIsotope = new Isotope(isotopeItem.querySelector('.isotope-container'), {
-        itemSelector: '.isotope-item',
-        layoutMode: layout,
-        filter: filter,
-        sortBy: sort
+    // Initialise before waiting for images so filters work immediately.
+    const isotope = new Isotope(container, {
+      itemSelector: '.isotope-item',
+      layoutMode: layout,
+      filter: filter,
+      sortBy: sort,
+      transitionDuration: '0.45s'
+    });
+    imagesLoaded(container, function() {
+      isotope.layout();
+    });
+
+    isotopeItem.querySelectorAll('.isotope-filters li').forEach(function(tab) {
+      tab.addEventListener('click', function() {
+        const active = isotopeItem.querySelector('.isotope-filters .filter-active');
+        if (active) active.classList.remove('filter-active');
+        tab.classList.add('filter-active');
+        isotope.arrange({ filter: tab.getAttribute('data-filter') });
       });
     });
-
-    isotopeItem.querySelectorAll('.isotope-filters li').forEach(function(filters) {
-      filters.addEventListener('click', function() {
-        isotopeItem.querySelector('.isotope-filters .filter-active').classList.remove('filter-active');
-        this.classList.add('filter-active');
-        initIsotope.arrange({
-          filter: this.getAttribute('data-filter')
-        });
-        if (typeof aosInit === 'function') {
-          aosInit();
-        }
-      }, false);
-    });
-
   });
 
   /**
